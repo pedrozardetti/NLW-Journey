@@ -1,4 +1,4 @@
-import { MapPin, Calendar} from 'lucide-react'
+import { MapPin, Calendar, ArrowRight} from 'lucide-react'
 
 export function App() {
   return (
@@ -18,7 +18,10 @@ export function App() {
           <input type="text" placeholder="Quando?" className="bg-transparent text-lg placeholder-zinc-400"/>
           </div>
 
-          <button>Continuar</button>
+          <button className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400">
+            Continuar
+            <ArrowRight className="size-5" />
+          </button>
         </div>
 
         <p className="text-sm text-zinc-500">
