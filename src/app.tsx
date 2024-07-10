@@ -3,13 +3,18 @@ import { useState } from 'react';
 
 export function App() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false)
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
   function openGuestsInput() {
     setIsGuestsInputOpen(true)
   }
 
-  function closeGuestsInputs() {
+  function closeGuestsInput() {
     setIsGuestsInputOpen(false)
+  }
+
+  function openGuestsModal() {
+    setIsGuestsModalOpen(true)
   }
 
   return (
@@ -35,7 +40,7 @@ export function App() {
           <div className="w-px h-6 bg-zinc-800"/>
 
           {isGuestsInputOpen ? (
-            <button onClick = {closeGuestsInputs} className="bg-zinc-800 text-lime-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700">
+            <button onClick = {closeGuestsInput} className="bg-zinc-800 text-lime-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700">
               Alterar local/data
               <Settings2 className='size-5'/>
               </button>
@@ -49,10 +54,11 @@ export function App() {
 
         {isGuestsInputOpen && (
            <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-           <div className="flex items-center gap-2 flex-1">
+           <button type = "button" onClick={openGuestsModal} className="flex items-center gap-2 flex-1 text-left">
              <UserRoundPlus className="size-5 text-zinc-400" />
-             <input type="text" placeholder="Quem estará na viagem?" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
-           </div>
+             <span className='text-zinc-400 text-lg flex-1'>Quem estará na viagem?</span>
+             <input type="text" placeholder="" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
+           </button>
  
  
            <div className="w-px h-6 bg-zinc-800"/>
@@ -71,6 +77,14 @@ export function App() {
           com nossos <a className="text-zinc-300 underline" href="#">termos de uso </a> e <a className="text-zinc-300 underline" href="#">políticas de privacidade.</a>
         </p>
       </div>
-    </div>
-  );
+      
+      {isGuestsModalOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+            <div className='w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900'>
+              <h2>Selecionar convidados</h2>
+            </div>
+        </div>
+        )}
+      </div>
+  )
 }
