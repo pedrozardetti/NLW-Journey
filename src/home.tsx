@@ -11,7 +11,7 @@ export function Home() {
           </p>
           <p className="text-zinc-300 text-lg">
             Antes, faça <Link to={"/login"}><span className="text-lime-300">login</span> </Link>ou{" "}
-            <span className="text-lime-300">cadastre-se!</span>
+            <Link to={"/signup"}><span className="text-lime-300">cadastre-se!</span> </Link>
           </p>
 
           <p className="text-sm text-zinc-500 mt-16">
