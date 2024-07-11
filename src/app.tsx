@@ -7,8 +7,22 @@ export function App() {
           <p className="text-zinc-300 text-lg">
             Convide seus amigos e planeje sua próxima viagem
           </p>
-          <p className="text-zinc-300 text-lg justify-start">
-            Antes, faça login ou cadastre-se!
+          <p className="text-zinc-300 text-lg">
+            Antes, faça <span className="text-lime-300">login</span> ou{" "}
+            <span className="text-lime-300">cadastre-se!</span>
+          </p>
+
+          <p className="text-sm text-zinc-500 mt-16">
+            Ao planejar sua viagem pela plann.er você automaticamente concorda{" "}
+            <br />
+            com nossos{" "}
+            <a className="text-zinc-300 underline" href="#">
+              termos de uso{" "}
+            </a>{" "}
+            e{" "}
+            <a className="text-zinc-300 underline" href="#">
+              políticas de privacidade.
+            </a>
           </p>
         </div>
       </div>
