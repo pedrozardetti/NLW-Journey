@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Home() {
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
@@ -8,7 +10,7 @@ export function Home() {
             Convide seus amigos e planeje sua próxima viagem
           </p>
           <p className="text-zinc-300 text-lg">
-            Antes, faça <span className="text-lime-300">login</span> ou{" "}
+            Antes, faça <Link to={"/login"}><span className="text-lime-300">login</span> </Link>ou{" "}
             <span className="text-lime-300">cadastre-se!</span>
           </p>
 
