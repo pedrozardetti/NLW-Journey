@@ -23,7 +23,7 @@ export function Login() {
                 placeholder="Senha"/>
           </div>
         </div>
-        <button className="w-full bg-lime-300 rounded-2xl text-lime-950 text-base font-medium h-11 justify-end">
+        <button className="w-full bg-lime-300 rounded-2xl text-lime-950 text-base font-medium h-11 mt-auto">
             Login
         </button>
       </div>
