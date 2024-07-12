@@ -1,4 +1,4 @@
-import { Lock, UserRoundPlus } from "lucide-react";
+import { Lock, Mail, UserRoundPlus } from "lucide-react";
 
 export function Signup() {
   return (
@@ -9,6 +9,14 @@ export function Signup() {
         <div className="flex flex-col gap-6">
           <div className="flex gap-2 bg-zinc-950 w-full rounded-lg h-16 border border-zinc-700 items-center">
             <UserRoundPlus className="size-5 text-zinc-400 ml-4" />
+            <input
+              className="bg-transparent outline-none w-full"
+              type="text"
+              placeholder="Seu nome completo"
+            />
+          </div>
+          <div className="flex gap-2 bg-zinc-950 w-full rounded-lg h-16 border border-zinc-700 items-center">
+            <Mail className="size-5 text-zinc-400 ml-4" />
             <input
               className="bg-transparent outline-none w-full"
               type="text"
