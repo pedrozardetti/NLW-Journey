@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { FormEvent, useState } from "react";
 
-export function App() {
+export function CreateTrip() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
 
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
