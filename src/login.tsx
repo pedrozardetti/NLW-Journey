@@ -11,7 +11,7 @@ export function Login() {
           <Mail className="size-5 text-zinc-400 ml-4" />
             <input 
                 className="bg-transparent outline-none w-full"
-                type="text" 
+                type="e-mail" 
                 placeholder="E-mail"/>
                 
           </div>
