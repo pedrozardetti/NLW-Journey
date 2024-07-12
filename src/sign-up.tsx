@@ -3,7 +3,7 @@ import { Lock, Mail, UserRoundPlus } from "lucide-react";
 export function Signup() {
   return (
     <div className="h-screen flex items-center justify-center">
-      <div className="max-w-[477px] w-full max-h-[549px] h-full bg-zinc-800 rounded-lg flex flex-col pt-6 px-4 pb-14">
+      <div className="max-w-[485px] w-full max-h-[641px] h-full bg-zinc-800 rounded-lg flex flex-col pt-6 px-4 pb-14">
         <img src="/logo.svg" alt="plann.er" className="self-center w-44" />
         <span className="mt-10 mb-4 font-bold ml-2">Cadastre-se!</span>
         <div className="flex flex-col gap-6">
@@ -33,7 +33,7 @@ export function Signup() {
           </div>
         </div>
         <button className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
-          Login
+          Cadastrar
         </button>
       </div>
     </div>
