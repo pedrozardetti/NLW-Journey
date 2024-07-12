@@ -7,6 +7,7 @@ import {
   X,
   AtSign,
   Plus,
+  User,
 } from "lucide-react";
 import { FormEvent, useState } from "react";
 
@@ -248,20 +249,29 @@ export function CreateTrip() {
           </div>
 
           <form
-            onSubmit={addNewEmailToInvite}>
-            <div className="p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2 ">
-              <AtSign className="text-zinc-400 size-5" />
+            onSubmit={addNewEmailToInvite} className="space-y-3">
+            <div className="h-14 px-5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2 ">
+              <User className="text-zinc-400 size-5" />
+              <input
+                name="name"
+                placeholder="Seu nome completo"
+                className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+              />
+            </div>
+
+            <div className="h-14 px-5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2 ">
+              <User className="text-zinc-400 size-5" />
               <input
                 type="email"
                 name="email"
-                placeholder="Digite o e-mail do convidado"
+                placeholder="Seu e-mail pessoal"
                 className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
+              className="bg-lime-300 w-full justify-center text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400"
             >
               Convidar
               <Plus className="size-5" />
