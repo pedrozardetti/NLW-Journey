@@ -1,4 +1,4 @@
-import { Lock, Mail, UserRoundPlus } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 
 export function Login() {
   return (
