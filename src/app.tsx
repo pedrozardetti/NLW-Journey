@@ -13,7 +13,7 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/create-trip" element={<CreateTrip />} />
-        <Route path="/trip-details" element={<TripDetailsPage />} />
+        <Route path="/trips/:tripId" element={<TripDetailsPage />} />
       </Routes>
     </Router>
   );
