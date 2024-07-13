@@ -5,8 +5,6 @@ import {
   UserRoundPlus,
   Settings2,
   X,
-  AtSign,
-  Plus,
   User,
 } from "lucide-react";
 import { FormEvent, useState } from "react";
