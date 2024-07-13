@@ -1,4 +1,15 @@
-export function ConfirmTripModal() {
+import { User, X } from "lucide-react";
+import { FormEvent } from "react";
+
+interface ConfirmTripModalProps {
+  closeConfirmTripModal: () => void;
+  createTrip: (event: FormEvent<HTMLFormElement>) => void
+}
+
+export function ConfirmTripModal({
+    closeConfirmTripModal,
+    createTrip,
+    }: ConfirmTripModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
@@ -24,7 +35,7 @@ export function ConfirmTripModal() {
           </p>
         </div>
 
-        <form onSubmit={addNewEmailToInvite} className="space-y-3">
+        <form onClick={createTrip} className="space-y-3">
           <div className="h-14 px-5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2 ">
             <User className="text-zinc-400 size-5" />
             <input
@@ -45,7 +56,6 @@ export function ConfirmTripModal() {
           </div>
 
           <button
-            onClick={createTrip}
             type="submit"
             className="bg-lime-300 w-full justify-center text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400"
           >
