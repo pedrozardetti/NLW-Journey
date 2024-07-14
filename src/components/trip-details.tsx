@@ -101,7 +101,7 @@ export function TripDetailsPage() {
                   <span className="block font-medium text-zinc-100">
                     Reserva do AirBnB
                   </span>
-                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
+                  <a className="block text-xs text-zinc-400 truncate hover:text-zinc-200">
                     https://www.airbnb.com.br/rooms/104700011234234234234123412342
                   </a>
                 </div>
@@ -121,22 +121,22 @@ export function TripDetailsPage() {
               <div className="flex items-center justify-between gap-4">
                 <div className="space-y-1.5">
                   <span className="block font-medium text-zinc-100">
-                    Reserva do AirBnB
+                    Jessica White
                   </span>
-                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
-                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
-                  </a>
+                  <span className="block text-sm text-zinc-400 truncate">
+                    jessica.white44@yahoo.com
+                  </span>
                 </div>
                 <CircleDashed className="text-zinc-400 size-5 shrink-0" />
               </div>
               <div className="flex items-center justify-between gap-4">
                 <div className="space-y-1.5">
                   <span className="block font-medium text-zinc-100">
-                    Reserva do AirBnB
+                    Dr. Rita Pacocha
                   </span>
-                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
-                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
-                  </a>
+                  <span className="block text-sm text-zinc-400 truncate">
+                    lacy.stiedemann@gmail.com
+                  </span>
                 </div>
                 <CircleDashed className="text-zinc-400 size-5 shrink-0" />
               </div>
