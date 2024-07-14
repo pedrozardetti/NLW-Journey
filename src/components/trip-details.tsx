@@ -1,4 +1,13 @@
-import { Calendar, CircleCheck, Link2, MapPin, Plus, Settings2 } from "lucide-react";
+import {
+  Calendar,
+  CircleCheck,
+  CircleDashed,
+  Link2,
+  MapPin,
+  Plus,
+  Settings2,
+  UserCog,
+} from "lucide-react";
 
 export function TripDetailsPage() {
   return (
@@ -76,24 +85,67 @@ export function TripDetailsPage() {
           <div className="space-y-6">
             <h2 className="font-semibold text-xl">Links importantes</h2>
             <div className="space-y-5">
-                <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-1.5">
-                        <span className="block font-medium text-zinc-100">Reserva do AirBnB</span>
-                        <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
-                            https://www.airbnb.com.br/rooms/104700011234234234234123412342
-                        </a>
-                    </div>
-                    <Link2 className="text-zinc-400 size-5 shrink-0"/>
+              <div className="flex items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="block font-medium text-zinc-100">
+                    Reserva do AirBnB
+                  </span>
+                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
+                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
+                  </a>
                 </div>
-
+                <Link2 className="text-zinc-400 size-5 shrink-0" />
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="block font-medium text-zinc-100">
+                    Reserva do AirBnB
+                  </span>
+                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
+                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
+                  </a>
+                </div>
+                <Link2 className="text-zinc-400 size-5 shrink-0" />
+              </div>
             </div>
             <button className="bg-zinc-800 w-full justify-center text-lime-200 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-zinc-700">
-            <Plus className="size-5" />
-            Cadastrar novo link
-          </button>
+              <Plus className="size-5" />
+              Cadastrar novo link
+            </button>
           </div>
+
           <div className="w-full h-px bg-zinc-800" />
-          <div></div>
+          <div className="space-y-6">
+            <h2 className="font-semibold text-xl">Convidados</h2>
+            <div className="space-y-5">
+              <div className="flex items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="block font-medium text-zinc-100">
+                    Reserva do AirBnB
+                  </span>
+                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
+                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
+                  </a>
+                </div>
+                <CircleDashed className="text-zinc-400 size-5 shrink-0" />
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="block font-medium text-zinc-100">
+                    Reserva do AirBnB
+                  </span>
+                  <a className="block text-zs text-zinc-400 truncate hover:text-zinc-200">
+                    https://www.airbnb.com.br/rooms/104700011234234234234123412342
+                  </a>
+                </div>
+                <CircleDashed className="text-zinc-400 size-5 shrink-0" />
+              </div>
+            </div>
+            <button className="bg-zinc-800 w-full justify-center text-lime-200 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-zinc-700">
+              <UserCog className="size-5" />
+              Gerenciar convidados
+            </button>
+          </div>
         </div>
       </main>
     </div>
