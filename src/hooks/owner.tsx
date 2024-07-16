@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { Owner, CreateOwnerRequest, AuthOwnerRequest } from "../types/Owner";
 import api from "../service/api";
+import { saveToStorage } from "../utils/Storage";
 
 interface AuthOwnerState {
   token: string;
@@ -8,50 +9,79 @@ interface AuthOwnerState {
 }
 
 interface AuthContextData {
+  token: string;
+  owner: Owner;
   status: number;
-  createOwner(owner:CreateOwnerRequest): Promise<void>;
+  createOwner(owner: CreateOwnerRequest): Promise<number>;
+  signIn(owner: AuthOwnerRequest): Promise<void>;
+
 }
 
 const AuthOwnerContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthOwnerProvider = ({ children }: any) => {
-  const [ownerData, setOwnerData] = useState<AuthOwnerState>( {} as AuthOwnerState);
+  const [ownerData, setOwnerData] = useState<AuthOwnerState>({} as AuthOwnerState);
 
   const [status, setStatus] = useState(0);
 
-  const createOwner = useCallback(async (owner: CreateOwnerRequest) => {
+  const createOwner = useCallback(async ({ name, email, password }: CreateOwnerRequest): Promise<number> => {
+
     try {
       const response = await api.post("/owners/create", {
-        name: owner.name,
-        email: owner.email,
-        password: owner.password,
-
+        name,
+        email,
+        password
 
       });
-      console.log(response.data)
+
       setStatus(response.status)
+
+      return response.status;
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
+  }, []);
+
+  const signIn = useCallback(async ({ email, password }: AuthOwnerRequest) => {
+
+    try {
+      const response = await api.post("/owners/auth", {
+        email,
+        password
+      });
+
+      saveToStorage("token", response.data.token);
+      saveToStorage("owner", response.data.owner);
+
+
+      setStatus(response.status)
+      setOwnerData({ token: response.data.token, owner: response.data.owner })
+    } catch (error) {
+      console.log(error)
+    }
+
   }, []);
 
   return (
     <AuthOwnerContext.Provider value={{
-        status: status,
-        createOwner: createOwner
-    
+      status: status,
+      createOwner,
+      owner: ownerData.owner,
+      token: ownerData.token,
+      signIn: signIn
+
     }}>
-        {children}
+      {children}
     </AuthOwnerContext.Provider>
   )
 
-  
+
 };
 
 function useOwner(): AuthContextData {
-    const context = useContext(AuthOwnerContext);
-    return context;
-  }
+  const context = useContext(AuthOwnerContext);
+  return context;
+}
 
-export {AuthOwnerProvider, useOwner}
+export { AuthOwnerProvider, useOwner }
 
