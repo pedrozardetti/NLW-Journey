@@ -14,6 +14,7 @@ interface AuthContextData {
   status: number;
   createOwner(owner: CreateOwnerRequest): Promise<number>;
   signIn(owner: AuthOwnerRequest): Promise<void>;
+  signOut(): void;
 
 }
 
@@ -62,13 +63,20 @@ const AuthOwnerProvider = ({ children }: any) => {
 
   }, []);
 
+  const signOut = useCallback(() => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("owner");
+    setOwnerData({} as AuthOwnerState);
+  }, []);
+
   return (
     <AuthOwnerContext.Provider value={{
       status: status,
       createOwner,
       owner: ownerData.owner,
       token: ownerData.token,
-      signIn: signIn
+      signIn: signIn,
+      signOut
 
     }}>
       {children}
