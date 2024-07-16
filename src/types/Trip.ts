@@ -3,5 +3,6 @@ export interface Trip {
     destination: string,
     starts_at: Date,
     ends_at: Date,
-    confirmed: boolean
+    confirmed: boolean,
+    ownerId: string
 }
