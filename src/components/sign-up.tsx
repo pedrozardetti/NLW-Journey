@@ -41,7 +41,7 @@ export function Signup() {
     } catch (error) {
         console.log(error);
     }
-  },[] )
+  },[createOwner, nome, email, senha, navigate] )
 
   useEffect(() => {
     const validateEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
@@ -118,7 +118,9 @@ export function Signup() {
             <Eye className="size-5 text-zinc-400" onClick={toggleShowPassword}/>
           </div>
         </div>
-        <button onClick={() => handleCreateOwner({name: nome, email, password: senha})} className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
+        <button onClick={() =>{
+          handleCreateOwner({name: nome, email: email, password: senha})
+        } } className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
           Cadastrar
         </button>
       </div>
