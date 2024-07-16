@@ -1,8 +1,15 @@
 import { Lock, Mail, UserRoundPlus, Eye} from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
+import { useOwner } from "../hooks/owner";
+import { CreateOwnerRequest } from "../types/Owner";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
+  const {createOwner, status} = useOwner();
+
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState("");
 
   const [email, setEmail] = useState("");
@@ -22,6 +29,19 @@ export function Signup() {
   function toggleShowPassword() {
     setShowPassword(!showPassword);
   }
+
+  const handleCreateOwner = useCallback(async (owner: CreateOwnerRequest) => {
+    try {
+      await createOwner(owner);
+
+      if (status==200) {
+        console.log("Criado");
+        navigate('/login')
+      }
+    } catch (error) {
+        console.log(error);
+    }
+  },[] )
 
   useEffect(() => {
     const validateEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
@@ -98,7 +118,7 @@ export function Signup() {
             <Eye className="size-5 text-zinc-400" onClick={toggleShowPassword}/>
           </div>
         </div>
-        <button className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
+        <button onClick={() => handleCreateOwner({name: nome, email, password: senha})} className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
           Cadastrar
         </button>
       </div>
