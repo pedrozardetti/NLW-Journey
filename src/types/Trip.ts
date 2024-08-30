@@ -1,10 +1,11 @@
 export interface Trip {
     id: string,
     destination: string,
-    starts_at: Date,
-    ends_at: Date,
+    starts_at: string,
+    ends_at: string,
     confirmed: boolean,
-    ownerId: string
+    ownerName: string,
+    ownerEmail: string
 }
 
 export interface CreateTrip {
