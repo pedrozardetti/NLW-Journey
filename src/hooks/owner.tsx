@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { Owner, CreateOwnerRequest, AuthOwnerRequest } from "../types/Owner";
 import api from "../service/api";
 import { saveToStorage } from "../utils/Storage";
@@ -8,88 +8,78 @@ interface AuthOwnerState {
   owner: Owner;
 }
 
-interface AuthContextData {
+interface OwnerContextData {
   token: string;
   owner: Owner;
   status: number;
-  createOwner(owner: CreateOwnerRequest): Promise<number>;
+  authenticated: boolean;
+  createOwner(owner: CreateOwnerRequest): Promise<void>;
   signIn(owner: AuthOwnerRequest): Promise<void>;
   signOut(): void;
-
 }
 
-const AuthOwnerContext = createContext<AuthContextData>({} as AuthContextData);
+const OwnerContext = createContext<OwnerContextData>({} as OwnerContextData);
 
-const AuthOwnerProvider = ({ children }: any) => {
+const OwnerProvider = ({ children }: any) => {
   const [ownerData, setOwnerData] = useState<AuthOwnerState>({} as AuthOwnerState);
-
+  const [authenticated, setAuthenticated] = useState(false);
   const [status, setStatus] = useState(0);
 
-  const createOwner = useCallback(async ({ name, email, password }: CreateOwnerRequest): Promise<number> => {
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
 
+    if (token) {
+      setAuthenticated(true);
+    }
+  }, []);
+
+  const createOwner = useCallback(async ({ name, email, password }: CreateOwnerRequest) => {
     try {
-      const response = await api.post("/owners/create", {
-        name,
-        email,
-        password
-
-      });
-
-      setStatus(response.status)
-
-      return response.status;
+      const response = await api.post("/owners/create", { name, email, password });
+      setStatus(response.status);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }, []);
 
   const signIn = useCallback(async ({ email, password }: AuthOwnerRequest) => {
-
     try {
-      const response = await api.post("/owners/auth", {
-        email,
-        password
-      });
-
+      const response = await api.post("/owners/auth", { email, password });
       saveToStorage("token", response.data.token);
-      saveToStorage("owner", response.data.owner);
-
-
-      setStatus(response.status)
-      setOwnerData({ token: response.data.token, owner: response.data.owner })
+      setStatus(response.status);
+      setOwnerData({ token: response.data.token, owner: response.data.owner });
+      setAuthenticated(true);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   }, []);
 
   const signOut = useCallback(() => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("owner");
     setOwnerData({} as AuthOwnerState);
+    setAuthenticated(false);
   }, []);
 
   return (
-    <AuthOwnerContext.Provider value={{
-      status: status,
+    <OwnerContext.Provider value={{
+      status,
       createOwner,
       owner: ownerData.owner,
       token: ownerData.token,
-      signIn: signIn,
-      signOut
-
+      authenticated,
+      signIn,
+      signOut,
     }}>
       {children}
-    </AuthOwnerContext.Provider>
-  )
-
-
+    </OwnerContext.Provider>
+  );
 };
 
-function useOwner(): AuthContextData {
-  const context = useContext(AuthOwnerContext);
+function useOwner() {
+  const context = useContext(OwnerContext);
+
   return context;
 }
 
-export { AuthOwnerProvider, useOwner }
-
+export { OwnerProvider, useOwner };
