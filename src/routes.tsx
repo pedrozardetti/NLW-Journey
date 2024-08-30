@@ -4,17 +4,27 @@ import { Login } from "./pages/login/login";
 import { Signup } from "./pages/signup/sign-up";
 import { CreateTrip } from "./pages/logged-app/new-trip/create-trip";
 import { TripDetailsPage } from "./pages/logged-app/trip/trip-details";
-import { useOwner } from "./hooks/owner";
+import { useOwner } from "./hooks/useOwner";
+import HomeLogged from "./pages/logged-app/home/HomeLogged";
 
 interface CustomRouteProps {
     isPrivate: boolean;
 }
 
-function CustomRoute({ isPrivate }: CustomRouteProps): React.ReactNode {
-    const { authenticated } = useOwner();
+function CustomRoute({ isPrivate }: CustomRouteProps) {
+    const { loading, authenticated } = useOwner();
 
+    if (loading) {
+        return <h1>Loading...</h1>;
+    }
+
+    console.log(authenticated)
     if (isPrivate && !authenticated) {
         return <Navigate to="/login" replace />;
+    }
+
+    if (!isPrivate && authenticated) {
+        return <Navigate to="/home" replace />;
     }
 
     return <Outlet />;
@@ -32,6 +42,9 @@ export default function Routes() {
                 </Route>
                 <Route path="/signup" element={<CustomRoute isPrivate={false} />}>
                     <Route path="/signup" element={<Signup />} />
+                </Route>
+                <Route path="/home" element={<CustomRoute isPrivate={true} />}>
+                    <Route path="/home" element={<HomeLogged />} />
                 </Route>
                 <Route path="/create-trip" element={<CustomRoute isPrivate={true} />}>
                     <Route path="/create-trip" element={<CreateTrip />} />
