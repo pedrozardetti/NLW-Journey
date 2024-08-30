@@ -34,13 +34,10 @@ export function Signup() {
   const handleCreateOwner = useCallback(async (owner: CreateOwnerRequest) => {
     try {
 
-      const statusResponse = await createOwner(owner);
+      await createOwner(owner);
 
-      console.log(statusResponse)
-      if (statusResponse == 200) {
-        await toast.success("Cadastro feito com sucesso.")
-        navigate('/login')
-      }
+      await toast.success("Cadastro feito com sucesso.")
+      navigate('/login')
     } catch (error) {
       console.log(error);
     }

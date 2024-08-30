@@ -1,13 +1,16 @@
 import { Lock, Mail } from "lucide-react";
-import { useCallback, useState } from "react";
-import { useOwner } from "../../hooks/owner";
+import { useState } from "react";
 import { AuthOwnerRequest } from "../../types/Owner";
 import { toast, Toaster } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useOwner } from "../../hooks/owner";
 
 export function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const { signIn } = useOwner();
 
@@ -36,9 +39,6 @@ export function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
-
-
           </div>
           <div className="flex gap-2 bg-zinc-950 w-full rounded-lg h-16 border border-zinc-700 items-center">
             <Lock className="size-5 text-zinc-400 ml-4" />
@@ -51,12 +51,15 @@ export function Login() {
             />
           </div>
         </div>
-        <button onClick={() => handleSignIn({ email, password })} className="w-full bg-lime-300 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto">
+        <span className="self-end mr-2 mt-2"> ou
+          <span className="text-lime-500 cursor-pointer hover:text-lime-300 transition-colors" onClick={() => navigate("/signup")}> cadastre-se</span>
+        </span>
+
+        <button onClick={() => handleSignIn({ email, password })} className="w-full bg-lime-400 rounded-lg text-lime-950 text-base font-medium h-11 mt-auto hover:bg-lime-300 transition-colors">
           Login
         </button>
       </div>
       <Toaster className="border-lime-600" position="top-right" duration={6000} toastOptions={{
-
         classNames: {
           toast: 'bg-zinc-800',
           title: 'text-zinc-100',
@@ -64,7 +67,6 @@ export function Login() {
           closeButton: 'text-zinc-100',
           icon: 'text-lime-300',
           cancelButton: 'text-zinc-100',
-
         }
       }} />
     </div>
