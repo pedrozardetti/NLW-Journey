@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AuthOwnerRequest } from "../../types/Owner";
 import { toast, Toaster } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { useOwner } from "../../hooks/owner";
+import { useOwner } from "../../hooks/useOwner";
 
 export function Login() {
 
