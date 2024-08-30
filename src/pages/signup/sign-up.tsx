@@ -1,7 +1,7 @@
 import { Lock, Mail, UserRoundPlus, Eye } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-import { useOwner } from "../../hooks/owner";
+import { useOwner } from "../../hooks/useOwner";
 import { CreateOwnerRequest } from "../../types/Owner";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "sonner";
