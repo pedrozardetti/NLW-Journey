@@ -21,13 +21,10 @@ export default function HomeLogged() {
             {TripList?.trips.map((trip: Trip) => (
                 <>
                     <div className="flex justify-between">
-                        <span>{trip.id}</span>
                         <span>{trip.destination}</span>
-                        <span>{trip.ownerEmail}</span>
-                        <span>{trip.ownerName}</span>
                         <span>{trip.starts_at}</span>
                         <span>{trip.ends_at}</span>
-                        <span>{trip.confirmed ? "Confirmado" : "Não confirmado"}</span>
+                    
                     </div>
                 </>
             ))}
